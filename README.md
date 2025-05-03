@@ -1,50 +1,71 @@
-﻿# CaughtMyEye
-User Manual: CaughtMyEye Web Application
+# User Manual: CaughtMyEye Web Application
 
-Overview
+## Overview
 CaughtMyEye is a web-based travel assistant that allows users to upload an image or scan a QR code from a location and instantly receive travel-related information. This includes the name of the landmark in the image, nearby hotels, flight options, and the ability to save trips for later. It is built using React, Firebase, and a set of external APIs like Google Vision, Google Maps, Skyscanner, and Amadeus.
 
-Getting Started
+---
 
-Access the Web ApplicationVisit the CaughtMyEye web app in your browser. You can start by signing in using your email and password, or by logging in via Google.
+## Getting Started
 
-Login or Sign UpIf you are a new user, create an account. All your trips and interactions will be saved under your user profile in Firebase Authentication.
+1. **Access the Web Application**  
+   Visit the CaughtMyEye web app in your browser. You can start by signing in using your email and password, or by logging in via Google.
 
-Connect Mobile DeviceThe mobile device is used to capture landmark photos. Use the pairing code and scan the QR code generated on the web dashboard. This establishes a secure session between your mobile device and the web app.
+2. **Login or Sign Up**  
+   If you are a new user, create an account. All your trips and interactions will be saved under your user profile in Firebase Authentication.
 
-Uploading and Processing a Landmark Image
+3. **Connect Mobile Device**  
+   The mobile device is used to capture landmark photos. Use the pairing code and scan the QR code generated on the web dashboard. This establishes a secure session between your mobile device and the web app.
 
-Scan QR Code & Enter Pairing CodeOn your mobile device, open the camera feature and scan the QR code from the web dashboard. Enter the pairing code shown on the web app.
+---
 
-Capture an ImageOnce paired, the mobile camera opens and allows you to take a picture of a landmark. Confirm the photo, and it is uploaded to Firebase Storage.
+## Uploading and Processing a Landmark Image
 
-Image ClassificationThe image is processed by the Google Vision API. It detects the name of the landmark, location coordinates (latitude and longitude), and stores metadata about the photo.
+1. **Scan QR Code & Enter Pairing Code**  
+   On your mobile device, open the camera feature and scan the QR code from the web dashboard. Enter the pairing code shown on the web app.
 
-Getting Travel Data
+2. **Capture an Image**  
+   Once paired, the mobile camera opens and allows you to take a picture of a landmark. Confirm the photo, and it is uploaded to Firebase Storage.
 
-Flight InformationThe landmark coordinates are passed to the Amadeus or Skyscanner API. The app fetches flight data from your current location (e.g., ATL) to the nearest international airport near the landmark (e.g., DEL for the Taj Mahal). The information includes airline name, price, flight duration, number of stops, and flight number.
+3. **Image Classification**  
+   The image is processed by the Google Vision API. It detects the name of the landmark, location coordinates (latitude and longitude), and stores metadata about the photo.
 
-Hotel InformationThe same coordinates are used to search for hotels using the Amadeus API. Hotel results include hotel name, address, rating, and cost. Filters allow you to sort by rating, price, and distance.
+---
 
-Map PreviewGoogle Maps API is used to place a pin on the recognized location. You can use it to get directions via walking, driving, or public transportation.
+## Getting Travel Data
 
-Saving and Viewing Trips
+1. **Flight Information**  
+   The landmark coordinates are passed to the Amadeus or Skyscanner API. The app fetches flight data from your current location (e.g., ATL) to the nearest international airport near the landmark (e.g., DEL for the Taj Mahal). The information includes airline name, price, flight duration, number of stops, and flight number.
 
-Save TripAfter selecting your preferred hotel and flight, click "Save Trip." The app saves the landmark name, flight details, hotel details, and image metadata to your user account in Firebase Firestore.
+2. **Hotel Information**  
+   The same coordinates are used to search for hotels using the Amadeus API. Hotel results include hotel name, address, rating, and cost. Filters allow you to sort by rating, price, and distance.
 
-View Saved TripsOn the dashboard, your saved trips are shown at the bottom. Each trip includes the landmark name, saved date, landmark image, flight details (departure, arrival, airline), and hotel information (name, rating, address).
+3. **Map Preview**  
+   Google Maps API is used to place a pin on the recognized location. You can use it to get directions via walking, driving, or public transportation.
 
-Trip ManagementTrips are displayed using expandable containers. Click to expand and review trip details. Currently, trips cannot be edited after saving.
+---
 
-Limitations
+## Saving and Viewing Trips
 
-The app may not recognize less-known or low-quality images.
+1. **Save Trip**  
+   After selecting your preferred hotel and flight, click "Save Trip." The app saves the landmark name, flight details, hotel details, and image metadata to your user account in Firebase Firestore.
 
-API limits from services like Amadeus may restrict heavy usage.
+2. **View Saved Trips**  
+   On the dashboard, your saved trips are shown at the bottom. Each trip includes the landmark name, saved date, landmark image, flight details (departure, arrival, airline), and hotel information (name, rating, address).
 
-Email-based itinerary delivery is not currently available.
+3. **Trip Management**  
+   Trips are displayed using expandable containers. Click to expand and review trip details. Currently, trips cannot be edited after saving.
 
-The mobile version (React Native) is not yet supported due to compatibility issues with certain libraries.
+---
 
-Contact and Support
+## Limitations
+
+- The app may not recognize less-known or low-quality images.
+- API limits from services like Amadeus may restrict heavy usage.
+- Email-based itinerary delivery is not currently available.
+- The mobile version (React Native) is not yet supported due to compatibility issues with certain libraries.
+
+---
+
+## Contact and Support
+
 For issues or feedback, please contact the project team via the support form on the website or through the GitHub repository.
