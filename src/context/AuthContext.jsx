@@ -5,9 +5,11 @@ import {
   signInWithEmailAndPassword, 
   signInWithPopup, 
   GoogleAuthProvider,
-  signOut 
+  signOut,
+  updateProfile
 } from 'firebase/auth';
-import { auth } from '../config/firebase'; // Adjust the import path as necessary
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../config/firebase'; // Adjust the import path as necessary
 
 const AuthContext = createContext();
 
@@ -57,7 +59,34 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   };
 
-  const value = { user, signup, login, googleLogin, logout, loading };
+  const updateUserProfile = async (profileData) => {
+    if (!user) throw new Error('No user logged in');
+    
+    try {
+      // Update Firebase Auth profile
+      await updateProfile(user, {
+        displayName: profileData.displayName,
+        photoURL: profileData.photoURL
+      });
+
+      // Update Firestore user document
+      const userDocRef = doc(db, 'users', user.uid);
+      await setDoc(userDocRef, {
+        ...profileData,
+        uid: user.uid,
+        email: user.email,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+
+      // Update local user state
+      setUser({ ...user, ...profileData });
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      throw error;
+    }
+  };
+
+  const value = { user, currentUser: user, signup, login, googleLogin, logout, updateUserProfile, loading };
 
   return (
     <AuthContext.Provider value={value}>
