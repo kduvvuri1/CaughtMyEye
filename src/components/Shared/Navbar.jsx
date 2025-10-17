@@ -2,7 +2,7 @@
 import React from 'react' // Must be in every JSX file
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import LogoIcon from 'C:\\Users\\kartk\\Downloads\\photo-landmark-locator\\assets\\eye-with-driaphragm.svg';
+import LogoIcon from '../../../assets/eye-with-driaphragm.svg';
 
 export default function Navbar() {
   const { user, logout } = useAuth();

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { uploadBytes, getDownloadURL, ref } from 'firebase/storage';
-import { storage } from '../firebase';
+import { storage } from '../../config/firebase';
 
 export default function ProfileSetup() {
   const { currentUser, updateUserProfile } = useAuth();
